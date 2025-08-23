@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YojanaMitra PDF Test</title>
+</head>
+<body>
+    <h1>🚀 YojanaMitra PDF Generation Test</h1>
+    
+    <h2>Step 1: Test Profile Extraction</h2>
+    <button onclick="testProfile()">Test Profile API</button>
+    <div id="profileResult"></div>
+    
+    <h2>Step 2: Generate PDF</h2>
+    <button onclick="generatePDF()">Generate PDF</button>
+    <div id="pdfResult"></div>
+    
+    <h2>Step 3: Download PDF</h2>
+    <div id="downloadLink"></div>
+
+    <script>
+        async function testProfile() {
+            const profileText = "I am Arsh, 19 years old, studying BCA, family income ₹150000, domicile Uttar Pradesh, OBC, I have my mark sheet and Aadhaar";
+            
+            try {
+                const response = await fetch('/api/profile', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text: profileText })
+                });
+                
+                const data = await response.json();
+                document.getElementById('profileResult').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                
+                // Auto-generate PDF after profile extraction
+                if (data.profile) {
+                    setTimeout(generatePDF, 1000);
+                }
+            } catch (error) {
+                document.getElementById('profileResult').innerHTML = 'Error: ' + error.message;
+            }
+        }
+        
+        async function generatePDF() {
+            try {
+                const response = await fetch('/api/fillpdf', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        profile: {
+                            name: "Arsh",
+                            dob: "2006-01-01",
+                            age: 19,
+                            income: 150000,
+                            state: "Uttar Pradesh",
+                            category: "OBC",
+                            education: "BCA"
+                        }
+                    })
+                });
+                
+                const data = await response.json();
+                document.getElementById('pdfResult').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                
+                if (data.url) {
+                    document.getElementById('downloadLink').innerHTML = 
+                        `<h3>🎉 PDF Generated Successfully!</h3>
+                         <p><a href="${data.url}" target="_blank">📥 Download Filled PDF</a></p>
+                         <p>Direct URL: <a href="${data.url}" target="_blank">${data.url}</a></p>`;
+                }
+            } catch (error) {
+                document.getElementById('pdfResult').innerHTML = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>

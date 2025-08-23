@@ -1,0 +1,22 @@
+[
+  {
+    "id": "sch_001",
+    "title": "State Post-Matric Scholarship",
+    "state": "Uttar Pradesh",
+    "description": "Scholarship for post-matric students from reserved categories",
+    "eligibility_json": "{\"income_max\":250000, \"category\":[\"SC\",\"ST\",\"OBC\"], \"student_status\":\"post-matric\"}",
+    "required_docs": "marksheet,income_certificate,category_certificate",
+    "source_url": "https://example.gov/scheme1",
+    "last_reviewed": "2025-08-01"
+  },
+  {
+    "id": "sch_002",
+    "title": "Small Business MSME Support",
+    "state": "All India",
+    "description": "Subsidy for registered micro enterprises",
+    "eligibility_json": "{\"msme_required\":true}",
+    "required_docs": "msme_certificate,aadhar,bank_passbook",
+    "source_url": "https://example.gov/msme",
+    "last_reviewed": "2025-08-01"
+  }
+]
