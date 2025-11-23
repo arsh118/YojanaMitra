@@ -50,11 +50,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
 
       if (!resp.ok) {
-        const errorData = await resp.json().catch(() => ({}))
+        const errorData: any = await resp.json().catch(() => ({}))
         throw new Error(errorData.error?.message || `OpenAI API error: ${resp.statusText}`)
       }
 
-      const data = await resp.json()
+      const data: any = await resp.json()
       
       // Clean up uploaded file
       try {

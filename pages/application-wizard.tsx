@@ -685,7 +685,7 @@ function DocumentsStep({ scheme, uploadedDocs, onUpload, errors, loading, fileIn
             </div>
             <div>
               <input
-                ref={(el) => fileInputRefs.current[doc] = el}
+                ref={(el) => { fileInputRefs.current[doc] = el; }}
                 type="file"
                 accept=".pdf,.jpg,.jpeg,.png"
                 onChange={(e) => {

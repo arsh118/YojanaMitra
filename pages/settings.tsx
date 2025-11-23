@@ -45,6 +45,7 @@ export default function Settings() {
   const colors = {
     primary: '#2563eb',
     primaryDark: '#1e40af',
+    secondary: '#f59e0b',
     success: '#10b981',
     gray: {
       50: '#f9fafb',

@@ -24,9 +24,12 @@ interface Scheme {
   id: string
   title: string
   description: string
+  state?: string
   eligibility: any
   required_docs: string[]
   official_portal_url?: string
+  source_url?: string
+  application_url?: string
 }
 
 interface EligibilityResult {

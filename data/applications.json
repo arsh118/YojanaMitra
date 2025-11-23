@@ -130,5 +130,38 @@
     },
     "createdAt": "2025-11-23T05:04:18.500Z",
     "updatedAt": "2025-11-23T05:04:18.501Z"
+  },
+  {
+    "id": "app_45145430-0bdd-4a83-8726-0f7d5f500327",
+    "userId": "7819849984",
+    "userName": "Arsh Ahmad",
+    "schemeId": "sch_001",
+    "schemeTitle": "State Post-Matric Scholarship",
+    "profile": {
+      "name": "Arsh Ahmad",
+      "state": "Uttar Pradesh",
+      "age": 20,
+      "phone": "7819849984",
+      "income_annual": 50000,
+      "caste": "OBC"
+    },
+    "documents": {
+      "marksheet": "/uploads/documents/7fec3ec7-a224-4bef-b879-c8bfcb024b50.jpg",
+      "income_certificate": "/uploads/documents/4e1ddd04-cb14-4b4f-ae0f-6a1e2cbca8e7.jpg",
+      "category_certificate": "/uploads/documents/7a7cbae8-95d8-4dc2-b811-dc5d31646545.jpg"
+    },
+    "confidence": 0.8,
+    "status": "pending",
+    "aiNotes": "Application submitted for State Post-Matric Scholarship. \n    Profile completeness: 6 fields filled.\n    Documents uploaded: 3/3.\n    All required documents present.",
+    "parsedFields": {
+      "name": "Arsh Ahmad",
+      "state": "Uttar Pradesh",
+      "age": 20,
+      "phone": "7819849984",
+      "income_annual": 50000,
+      "caste": "OBC"
+    },
+    "createdAt": "2025-11-23T06:20:49.093Z",
+    "updatedAt": "2025-11-23T06:20:49.095Z"
   }
 ]
