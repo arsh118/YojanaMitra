@@ -1,0 +1,17 @@
+[
+  {
+    "id": "draft_1763862393952",
+    "schemeId": "sch_001",
+    "profile": {
+      "name": "Arsh Ahmad",
+      "state": "Uttar Pradesh",
+      "age": 20,
+      "phone": "7819849984",
+      "income_annual": 50000,
+      "caste": "OBC"
+    },
+    "uploadedDocs": [],
+    "lastSaved": "2025-11-23T04:39:52.931Z",
+    "createdAt": "2025-11-23T02:10:37.625Z"
+  }
+]

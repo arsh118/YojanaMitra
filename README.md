@@ -97,31 +97,102 @@ To set up and run this project on your local machine, follow these steps.
     ```
 
 3.  **Set up environment variables:**
-    * Create a file named `.env.local` in the root directory.
-    * Copy the contents of `.env.example` into `.env.local`.
-    * Fill in your secret keys and URLs from Supabase, OpenAI, and Twilio.
+    * Create a file named `.env.local` in the `YojanaMitra` directory.
+    * Add the following environment variables:
     ```env
-    # Supabase
-    NEXT_PUBLIC_SUPABASE_URL=YOUR_SUPABASE_URL
-    NEXT_PUBLIC_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
+    # OpenAI Configuration (Required)
+    OPENAI_API_KEY=your_openai_api_key_here
 
-    # OpenAI
-    OPENAI_API_KEY=YOUR_OPENAI_API_KEY
+    # Twilio Configuration (Required for WhatsApp/SMS)
+    TWILIO_ACCOUNT_SID=your_twilio_account_sid
+    TWILIO_AUTH_TOKEN=your_twilio_auth_token
+    TWILIO_FROM_NUMBER=whatsapp:+14155238886
 
-    # Twilio
-    TWILIO_ACCOUNT_SID=YOUR_TWILIO_SID
-    TWILIO_AUTH_TOKEN=YOUR_TWILIO_TOKEN
+    # Supabase Configuration (Optional, for database storage)
+    SUPABASE_URL=your_supabase_url
+    SUPABASE_KEY=your_supabase_anon_key
+
+    # Next.js Configuration
+    NEXT_PUBLIC_APP_URL=http://localhost:3000
+    ```
+    
+    **Note:** 
+    - OpenAI API key is required for all AI features (Whisper, GPT, TTS)
+    - Twilio credentials are required for WhatsApp/SMS reminders
+    - Supabase is optional but recommended for production use
+
+4.  **Install dependencies:**
+    ```bash
+    cd YojanaMitra
+    npm install
     ```
 
-4.  **Set up the Supabase database:**
+5.  **Set up the Supabase database (Optional):**
     * Go to the SQL Editor in your Supabase project.
-    * Run the SQL schema script located at `supabase/schema.sql` to create the necessary tables.
+    * Create tables for storing user profiles, applications, and scheme data if needed.
+    * For basic functionality, the app works with local JSON files in the `data/` directory.
 
-5.  **Run the development server:**
+6.  **Seed scheme data (Optional):**
+    ```bash
+    npm run seed
+    ```
+    This will populate the `data/schemes.json` file with sample schemes.
+
+7.  **Run the development server:**
     ```bash
     npm run dev
     ```
     Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+
+## 🎯 Usage Guide
+
+### Complete Workflow
+
+1. **User Input**: 
+   - Users can either type or speak (voice recording) their information in Hindi or English
+   - The system uses OpenAI Whisper to transcribe voice input
+
+2. **Profile Extraction**:
+   - GPT-4 extracts structured profile data (name, age, income, caste, education, etc.)
+   - Profile is stored and used for scheme matching
+
+3. **Scheme Matching**:
+   - RAG-based matching finds relevant schemes from the database
+   - Each scheme gets a confidence score and explanation
+   - Low-confidence matches are flagged for human review
+
+4. **Form Filling**:
+   - User selects a scheme
+   - System automatically extracts PDF form fields
+   - Profile data is mapped and filled into the PDF
+
+5. **Document Generation**:
+   - System generates supporting letters, affidavits, and checklists
+   - All documents are in Hinglish (Hindi + English) for accessibility
+
+6. **Application Kit**:
+   - User downloads a zip file containing:
+     - Filled application form (PDF)
+     - Supporting letter
+     - Affidavit
+     - Document checklist
+     - README with instructions
+
+7. **Reminders**:
+   - Users can opt-in for WhatsApp/SMS reminders
+   - n8n workflows can be configured for automated follow-ups
+
+## 🔑 API Endpoints
+
+- `POST /api/profile` - Extract profile from text/voice
+- `POST /api/whisper` - Transcribe audio to text
+- `POST /api/match` - Find matching schemes
+- `POST /api/fillpdf` - Fill PDF forms automatically
+- `POST /api/generate-docs` - Generate supporting documents
+- `POST /api/kit` - Create downloadable application kit
+- `POST /api/send-reminder` - Send WhatsApp/SMS reminders
+- `POST /api/tts` - Text-to-speech conversion
+- `POST /api/review` - Human-in-the-loop review flagging
 
 ## 📸 Demo & Screenshots
 

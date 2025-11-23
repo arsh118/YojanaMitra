@@ -15,7 +15,7 @@ if (!fs.existsSync(csvPath)) {
   process.exit(1);
 }
 
-const csvText = fs.readFileSync(csvPath, 'utf8');
+const csvText = fs.readFileSync(csvPath, 'utf8'); 
 const records = parse(csvText, { 
   columns: true, 
   skip_empty_lines: true,
